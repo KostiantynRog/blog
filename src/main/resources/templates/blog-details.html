@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main RogBlog</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header th:insert="blocks/header :: header"></header>
+    <div class="container mt-5">
+        <div th:each="el : ${post}" class="alert alert-info mt-2">
+            <h3 th:text="${el.title}"></h3>
+            <p th:text="${el.full_text}"></p>
+            <p><b>Views:</b><span th:text="${el.views}" /></p>
+            <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Edit</a>
+            <form th:action="'/blog/' + ${el.id} + '/remove'" method="post" class="btn mt-1">
+            <button class="btn btn-warning" type="submit">Remove</button>
+            </form>
+
+        </div>
+    </div>
+    <footer th:insert="blocks/footer :: footer"></footer>
+</div>
+
+</body>
+</html>
